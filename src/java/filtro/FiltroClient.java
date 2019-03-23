@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package filtro;
-
+//Hola buenas.
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
