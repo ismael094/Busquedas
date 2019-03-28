@@ -39,12 +39,12 @@ public class BusquedaGeneral {
      * @return an instance of java.lang.String
      */
     @GET
-    @Path("{key}, {nombre}")
+    @Path("{key}, {nombre}, {page}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson(@PathParam("key") String key, @PathParam("nombre") String nombre) {
+    public String getJson(@PathParam("key") String key, @PathParam("nombre") String nombre, @PathParam("page") int page) {
         //TODO return proper representation objec
         FiltroClient fc = new FiltroClient();
-        return fc.getJson(key, nombre);
+        return fc.getJson(key, nombre, page+"");
     }
 
     /**
