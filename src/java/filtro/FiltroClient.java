@@ -32,13 +32,19 @@ public class FiltroClient {
         webTarget = client.target(BASE_URI).path("filtro");
     }
 
+    public String getNovedades() throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("Novedades");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
+    }
+
     public void putJson(Object requestEntity) throws ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public String getJson(String key, String nombre) throws ClientErrorException {
+    public String getJson(String key, String nombre, String page) throws ClientErrorException {
         WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("{0}, {1}", new Object[]{key, nombre}));
+        resource = resource.path(java.text.MessageFormat.format("{0}, {1}, {2}", new Object[]{key, nombre, page}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
     }
 
