@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuarios.findByUsuario", query = "SELECT u FROM Usuarios u WHERE u.usuario = :usuario")
     , @NamedQuery(name = "Usuarios.findByNombre", query = "SELECT u FROM Usuarios u WHERE u.nombre = :nombre")
     , @NamedQuery(name = "Usuarios.findByDireccion", query = "SELECT u FROM Usuarios u WHERE u.direccion = :direccion")
-    , @NamedQuery(name = "Usuarios.findByContrase\u00f1a", query = "SELECT u FROM Usuarios u WHERE u.contrase\u00f1a = :contrase\u00f1a")
+    , @NamedQuery(name = "Usuarios.findByPass", query = "SELECT u FROM Usuarios u WHERE u.pass = :pass")
     , @NamedQuery(name = "Usuarios.findByDni", query = "SELECT u FROM Usuarios u WHERE u.dni = :dni")
     , @NamedQuery(name = "Usuarios.findByTipo", query = "SELECT u FROM Usuarios u WHERE u.tipo = :tipo")})
 public class Usuarios implements Serializable {
@@ -58,8 +58,8 @@ public class Usuarios implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "contrase\u00f1a")
-    private String contraseña;
+    @Column(name = "pass")
+    private String pass;
     @Basic(optional = false)
     @NotNull
     @Column(name = "dni")
@@ -78,11 +78,11 @@ public class Usuarios implements Serializable {
         this.usuario = usuario;
     }
 
-    public Usuarios(String usuario, String nombre, String direccion, String contraseña, int dni, int tipo) {
+    public Usuarios(String usuario, String nombre, String direccion, String pass, int dni, int tipo) {
         this.usuario = usuario;
         this.nombre = nombre;
         this.direccion = direccion;
-        this.contraseña = contraseña;
+        this.pass = pass;
         this.dni = dni;
         this.tipo = tipo;
     }
@@ -111,12 +111,12 @@ public class Usuarios implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPass() {
+        return pass;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public int getDni() {

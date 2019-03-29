@@ -61,6 +61,54 @@ public class LibrosFacadeREST extends AbstractFacade<Libros> {
     public Libros find(@PathParam("id") Integer id) {
         return super.find(id);
     }
+    
+    @GET
+    @Path("ISBN/{isbn}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Libros> findByIsbn(@PathParam("isbn") String isbn) {
+        javax.persistence.criteria.CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(Libros.class));
+        return em.createNamedQuery("Libros.findByIsbn").setParameter("isbn",isbn).getResultList();
+    }
+    @GET
+    @Path("TITLE/{title}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Libros> findByTitle(@PathParam("title") String title) {
+        javax.persistence.criteria.CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(Libros.class));
+        return em.createNamedQuery("Libros.findByTitle").setParameter("title","%"+title+"%").getResultList();
+        //return (Libros) ;
+    }
+    
+    @GET
+    @Path("AUTHORNAME/{authorName}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Libros> findByAuthorName(@PathParam("authorName") String authorName) {
+        javax.persistence.criteria.CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(Libros.class));
+        return em.createNamedQuery("Libros.findByAuthorName").setParameter("authorName","%"+authorName+"%").getResultList();
+        //return (Libros) ;
+    }
+    
+    @GET
+    @Path("SUBJECT/{subject}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Libros> findBySubject(@PathParam("subject") String subject) {
+        javax.persistence.criteria.CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(Libros.class));
+        return em.createNamedQuery("Libros.findBySubject").setParameter("subject","%"+subject+"%").getResultList();
+        //return (Libros) ;
+    }
+    
+    @GET
+    @Path("OCLC/{oclc}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Libros> findByOclc(@PathParam("oclc") String oclc) {
+        javax.persistence.criteria.CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(Libros.class));
+        return em.createNamedQuery("Libros.findByOclc").setParameter("oclc",oclc).getResultList();
+        //return (Libros) ;
+    }
 
     @GET
     @Override
