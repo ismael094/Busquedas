@@ -34,11 +34,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Libros.findAll", query = "SELECT l FROM Libros l")
     , @NamedQuery(name = "Libros.findById", query = "SELECT l FROM Libros l WHERE l.id = :id")
     , @NamedQuery(name = "Libros.findByTitle", query = "SELECT l FROM Libros l WHERE l.title like :title")
-    , @NamedQuery(name = "Libros.findByAuthorName", query = "SELECT l FROM Libros l WHERE l.authorName = :authorName")
+    , @NamedQuery(name = "Libros.findByAuthorName", query = "SELECT l FROM Libros l WHERE l.authorName like :authorName")
     , @NamedQuery(name = "Libros.findByIsbn", query = "SELECT l FROM Libros l WHERE l.isbn = :isbn")
+    , @NamedQuery(name = "Libros.random", query = "SELECT l FROM Libros l order by l.publishYear DESC")
     , @NamedQuery(name = "Libros.findByOclc", query = "SELECT l FROM Libros l WHERE l.oclc = :oclc")
     , @NamedQuery(name = "Libros.findByPublishYear", query = "SELECT l FROM Libros l WHERE l.publishYear = :publishYear")
-    , @NamedQuery(name = "Libros.findBySubject", query = "SELECT l FROM Libros l WHERE l.subject = :subject")
+    , @NamedQuery(name = "Libros.findBySubject", query = "SELECT l FROM Libros l WHERE l.subject like :subject")
     , @NamedQuery(name = "Libros.findByStock", query = "SELECT l FROM Libros l WHERE l.stock = :stock")
     , @NamedQuery(name = "Libros.findByPublisher", query = "SELECT l FROM Libros l WHERE l.publisher = :publisher")})
 public class Libros implements Serializable {
@@ -97,10 +98,10 @@ public class Libros implements Serializable {
         this.id = id;
     }
 
-    public Libros(Integer id, String title, String authorName, String isbn, String oclc, int publishYear, String subject, int stock, String publisher) {
+    public Libros(Integer id, String title, String author_name, String isbn, String oclc, int publishYear, String subject, int stock, String publisher) {
         this.id = id;
         this.title = title;
-        this.authorName = authorName;
+        this.authorName = author_name;
         this.isbn = isbn;
         this.oclc = oclc;
         this.publishYear = publishYear;

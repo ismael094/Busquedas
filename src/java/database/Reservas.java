@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -34,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reservas.findAll", query = "SELECT r FROM Reservas r")
     , @NamedQuery(name = "Reservas.findById", query = "SELECT r FROM Reservas r WHERE r.id = :id")
     , @NamedQuery(name = "Reservas.findByFechaInicio", query = "SELECT r FROM Reservas r WHERE r.fechaInicio = :fechaInicio")
-    , @NamedQuery(name = "Reservas.findByFechaEntrega", query = "SELECT r FROM Reservas r WHERE r.fechaEntrega = :fechaEntrega")})
+    , @NamedQuery(name = "Reservas.findByFechaEntrega", query = "SELECT r FROM Reservas r WHERE r.fechaEntrega = :fechaEntrega")
+    , @NamedQuery(name = "Reservas.findByEstado", query = "SELECT r FROM Reservas r WHERE r.estado = :estado")})
 public class Reservas implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,6 +55,12 @@ public class Reservas implements Serializable {
     @Column(name = "fecha_entrega")
     @Temporal(TemporalType.DATE)
     private Date fechaEntrega;
+    @Size(max = 1)
+    @Column(name = "estado")
+    private String estado;
+    @NotNull
+    @Column(name = "penalizacion")
+    private Integer penalizacion;
     @JoinColumn(name = "idLibro", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Libros idLibro;
@@ -81,6 +89,16 @@ public class Reservas implements Serializable {
         this.id = id;
     }
 
+    public Integer getPenalizacion() {
+        return penalizacion;
+    }
+
+    public void setPenalizacion(Integer penalizacion) {
+        this.penalizacion = penalizacion;
+    }
+    
+    
+
     public Date getFechaInicio() {
         return fechaInicio;
     }
@@ -95,6 +113,14 @@ public class Reservas implements Serializable {
 
     public void setFechaEntrega(Date fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Libros getIdLibro() {

@@ -25,7 +25,7 @@ public class FiltroClient {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/FiltroWS/webresources";
+    private static final String BASE_URI = "http://ws.docencia.ces.siani.es/a01/FiltroWS/webresources/";
 
     public FiltroClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
